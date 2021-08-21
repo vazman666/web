@@ -13,7 +13,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
-	"github.com/vazman/web/routes"
+	"github.com/vazman666/web/routes"
 )
 
 type Product struct {
