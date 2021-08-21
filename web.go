@@ -11,25 +11,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vazman666/web/routes"
-
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
+	"github.com/vazman666/web/funct"
 )
 
-type Product struct {
-	Id       int
-	Partnum  string
-	Qty      int
-	Price    float32
-	Provider string
-	Name     string
-	Remark   string
-	Date     string
-	Color    string
-}
-
-var database *sql.DB
 var m sync.Mutex
 
 func DeleteHandler(w http.ResponseWriter, r *http.Request) {
@@ -246,7 +232,7 @@ func main() {
 	//router.HandleFunc("/add", Count)
 	s1.HandleFunc("/add/{Id:[0-9]+}", Count)
 	s1.HandleFunc("/del", Del)
-	s1.HandleFunc("/edit/{Id:[0-9]+}", routes.EditPage).Methods("GET")
+	s1.HandleFunc("/edit/{Id:[0-9]+}", funct.EditPage).Methods("GET")
 	s1.HandleFunc("/edit/{Id:[0-9]+}", EditHandler).Methods("POST")
 	s1.HandleFunc("/delete/{Id:[0-9]+}", DeleteHandler)
 

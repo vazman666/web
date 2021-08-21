@@ -6,17 +6,16 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/vazman666/web/models"
 )
 
 func EditPage(w http.ResponseWriter, r *http.Request) {
-	models.M.Lock()
-	defer models.M.Unlock()
+	m.Lock()
+	defer m.Unlock()
 	vars := mux.Vars(r)
 	Id := vars["Id"]
 
-	row := models.Database.QueryRow("select * from mybase.mybase where Id = ?", Id)
-	prod := models.Product{}
+	row := database.QueryRow("select * from mybase.mybase where Id = ?", Id)
+	prod := Product{}
 	err := row.Scan(&prod.Id, &prod.Partnum, &prod.Qty, &prod.Price, &prod.Provider, &prod.Name, &prod.Remark, &prod.Date, &prod.Color)
 
 	if err != nil {
