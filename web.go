@@ -13,6 +13,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
+	"github.com/vazman/web/routes"
 )
 
 type Product struct {
@@ -44,7 +45,7 @@ func DeleteHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", 301)
 }
 
-func EditPage(w http.ResponseWriter, r *http.Request) {
+/*func EditPage(w http.ResponseWriter, r *http.Request) {
 	m.Lock()
 	defer m.Unlock()
 	vars := mux.Vars(r)
@@ -61,7 +62,7 @@ func EditPage(w http.ResponseWriter, r *http.Request) {
 		tmpl, _ := template.ParseFiles("templates/edit.html")
 		tmpl.Execute(w, prod)
 	}
-}
+}*/
 
 func EditHandler(w http.ResponseWriter, r *http.Request) {
 	m.Lock()
@@ -244,7 +245,7 @@ func main() {
 	//router.HandleFunc("/add", Count)
 	s1.HandleFunc("/add/{Id:[0-9]+}", Count)
 	s1.HandleFunc("/del", Del)
-	s1.HandleFunc("/edit/{Id:[0-9]+}", EditPage).Methods("GET")
+	s1.HandleFunc("/edit/{Id:[0-9]+}", routes.EditPage).Methods("GET")
 	s1.HandleFunc("/edit/{Id:[0-9]+}", EditHandler).Methods("POST")
 	s1.HandleFunc("/delete/{Id:[0-9]+}", DeleteHandler)
 
