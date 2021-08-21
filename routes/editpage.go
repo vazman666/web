@@ -1,10 +1,11 @@
 package routes
 
 import (
-	"hello/sources/pkg/mod/github.com/gorilla/mux@v1.8.0"
 	"html/template"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func EditPage(w http.ResponseWriter, r *http.Request) {
